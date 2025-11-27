@@ -1,75 +1,53 @@
 pipeline {
-agent any
+    agent any
 
+    tools {
+        maven 'maven'
+    }
 
-tools {
-    maven 'maven' // Ensure this matches your Jenkins Maven installation
-}
+    environment {
+        IMAGE_NAME = "sak_redis_app"
+    }
 
-environment {
-    DOCKER_COMPOSE_DIR = "/var/lib/jenkins/workspace/jenkins" // Directory containing docker-compose.yml
-    DOCKER_IMAGE = "sak_redis_app"
-}
+    stages {
 
-stages {
+        stage('Checkout Code') {
+            steps {
+                checkout scm
+            }
+        }
 
-    stage('Checkout Code') {
-        steps {
-            echo "📥 Pulling latest code..."
-            checkout scm
+        stage('Build Jar') {
+            steps {
+                sh 'mvn clean package -DskipTests'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh """
+                    docker build -t ${IMAGE_NAME} .
+                """
+            }
+        }
+
+        stage('Deploy using Docker Compose') {
+            steps {
+                sh """
+                    docker-compose down || true
+                    docker-compose build --no-cache
+                    docker-compose up -d
+                """
+            }
         }
     }
 
-    stage('Build Spring Boot JAR') {
-        steps {
-            echo "🔨 Building JAR..."
-            sh 'mvn clean package -DskipTests'
+    post {
+        success {
+            echo "🚀 Deployment successful! Spring Boot + Redis is running."
+        }
+        failure {
+            echo "❌ Deployment failed. Check Jenkins logs."
         }
     }
-
-    stage('Build Docker Image') {
-        steps {
-            echo "📦 Building Docker image..."
-            sh """
-                cd ${DOCKER_COMPOSE_DIR}
-                docker build -t ${DOCKER_IMAGE} .
-            """
-        }
-    }
-
-    stage('Deploy with Docker Compose') {
-        steps {
-            echo "🚀 Deploying using docker-compose..."
-            sh """
-                cd ${DOCKER_COMPOSE_DIR}
-                docker-compose down -v --remove-orphans
-
-                # Build and start containers, app waits for Redis
-                docker-compose up -d --build
-            """
-        }
-    }
-
-    stage('Verify Deployment') {
-        steps {
-            echo "🔍 Checking container status..."
-            sh """
-                docker ps
-                docker logs app
-                docker logs redis
-            """
-        }
-    }
-}
-
-post {
-    success {
-        echo "🎉 Deployment completed successfully!"
-    }
-    failure {
-        echo "❌ Deployment failed!"
-    }
-}
-
-
 }
