@@ -11,24 +11,20 @@ pipeline {
     }
 
     stages {
-
         stage('Checkout Code') {
             steps {
-                echo "📥 Pulling latest code..."
                 checkout scm
             }
         }
 
         stage('Build Spring Boot JAR') {
             steps {
-                echo "🔨 Building JAR..."
                 sh 'mvn clean package -DskipTests'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                echo "📦 Building Docker image..."
                 sh """
                     cd ${DOCKER_COMPOSE_DIR}
                     docker build -t ${DOCKER_IMAGE} .
@@ -38,7 +34,6 @@ pipeline {
 
         stage('Deploy with Docker Compose') {
             steps {
-                echo "🚀 Deploying using docker-compose..."
                 sh """
                     cd ${DOCKER_COMPOSE_DIR}
                     docker-compose down -v --remove-orphans
@@ -50,10 +45,10 @@ pipeline {
 
     post {
         success {
-            echo "🎉 Deployment completed successfully!"
+            echo "Deployment completed successfully!"
         }
         failure {
-            echo "❌ Deployment failed!"
+            echo "Deployment failed!"
         }
     }
 }
