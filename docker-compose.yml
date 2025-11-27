@@ -1,9 +1,5 @@
 version: "3.9"
 
-networks:
-  sak-network:
-    driver: bridge
-
 services:
   redis:
     image: redis:7-alpine
@@ -13,13 +9,13 @@ services:
     volumes:
       - redis-data:/data
     command: ["redis-server", "--appendonly", "yes"]
-    networks:
-      - sak-network
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
       timeout: 3s
       retries: 5
+    networks:
+      - sak-network
 
   app:
     build: .
@@ -38,3 +34,7 @@ services:
 
 volumes:
   redis-data:
+
+networks:
+  sak-network:
+    driver: bridge
