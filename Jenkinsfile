@@ -1,7 +1,7 @@
 pipeline {
 agent any
 
-```
+
 tools {
     maven 'maven' // Ensure this matches your Jenkins Maven installation
 }
@@ -70,6 +70,6 @@ post {
         echo "❌ Deployment failed!"
     }
 }
-```
+
 
 }
