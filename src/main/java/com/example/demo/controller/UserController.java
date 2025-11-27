@@ -19,7 +19,7 @@ public class UserController {
     public String home(Model model) {
         List<User> allUsers = userService.getAllUsersInOrder();
         model.addAttribute("allUsers", allUsers);
-        return "index";
+        return "index.html";
     }
 
     @PostMapping("/save")
@@ -39,7 +39,7 @@ public class UserController {
         }
         List<User> allUsers = userService.getAllUsersInOrder();
         model.addAttribute("allUsers", allUsers);
-        return "index";
+        return "index.html";
     }
 
     @PostMapping("/delete")
@@ -48,6 +48,6 @@ public class UserController {
         model.addAttribute("successMessage", "🗑️ User deleted successfully!");
         List<User> allUsers = userService.getAllUsersInOrder();
         model.addAttribute("allUsers", allUsers);
-        return "index";
+        return "index.html";
     }
 }
