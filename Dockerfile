@@ -1,22 +1,18 @@
-# Use OpenJDK 17 Alpine
+# Use OpenJDK 17
 FROM eclipse-temurin:17-jdk-alpine
 
 # Set working directory
 WORKDIR /app
 
-# Copy Spring Boot JAR
+# Copy JAR
 COPY target/springboot-redis-demo-1.0.0.jar app.jar
+
+# Copy wait-for-it script
+COPY wait-for-it.sh /app/wait-for-it.sh
+RUN chmod +x /app/wait-for-it.sh
 
 # Expose port
 EXPOSE 8084
 
-# Use a single CMD instruction with sh to wait for Redis
-CMD sh -c " \
-  echo '⏳ Waiting for Redis...'; \
-  while ! nc -z ${SPRING_REDIS_HOST:-redis} ${SPRING_REDIS_PORT:-6379}; do \
-    echo 'Redis not ready, retrying...'; \
-    sleep 2; \
-  done; \
-  echo '✅ Redis is up! Starting Spring Boot...'; \
-  java -jar app.jar \
-"
+# Wait for Redis and then start app
+CMD ["./wait-for-it.sh", "redis:6379", "--timeout=30", "--strict", "--", "java", "-jar", "app.jar"]
