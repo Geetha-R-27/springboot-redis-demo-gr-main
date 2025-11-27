@@ -55,8 +55,8 @@ stages {
             echo "🔍 Checking container status..."
             sh """
                 docker ps
-                docker logs sak_app
-                docker logs sak_redis
+                docker logs app
+                docker logs redis
             """
         }
     }
