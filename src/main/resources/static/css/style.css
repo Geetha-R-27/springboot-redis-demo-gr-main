@@ -11,6 +11,50 @@ body {
     background: #f4f2ff; /* Light lavender */
     color: #333;
 }
+/* Table Section */
+.table-section {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+/* Wrapper */
+.table-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Table */
+table {
+    width: 100%;
+    max-width: 600px;  /* keeps table centered & aligned */
+    border-collapse: collapse;
+    border-radius: 14px;
+    overflow: hidden;
+    background: white;
+}
+
+/* Table Header */
+table th {
+    background: #6c3bff;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Table Cells */
+table td {
+    padding: 12px 20px;
+    border-bottom: 1px solid #e5dfff;
+    text-align: center;
+    font-size: 1rem;
+}
+
+/* Hover effect */
+table tr:hover {
+    background: #f4f0ff;
+}
 
 /* Header */
 .header {
