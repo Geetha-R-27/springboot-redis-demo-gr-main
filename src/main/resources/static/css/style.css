@@ -1,47 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-/* Body */
 body {
-    font-family: 'Oxanium', sans-serif;
-    background: #1c1c22; /* not full dark */
-    color: #eae6ff;
-    letter-spacing: 0.4px;
+    font-family: "Poppins", sans-serif;
+    background: #f4f2ff; /* Light lavender */
+    color: #333;
 }
 
 /* Header */
 .header {
-    background: linear-gradient(135deg, #2b2b33, #3a2a4d);
-    color: #c29fff;
+    background: linear-gradient(135deg, #d8c7ff, #b89aff);
+    color: #3b2e63;
     padding: 1.5rem 2rem;
     text-align: center;
-    border-bottom: 2px solid #6f43ff;
-    box-shadow: 0 5px 20px rgba(111, 67, 255, 0.2);
+    box-shadow: 0 3px 10px rgba(120, 80, 200, 0.3);
 }
 
 .header h1 {
-    font-size: 2.4rem;
-    color: #d7c5ff;
+    font-size: 2.3rem;
+    color: #3c2c66;
 }
 
 .header span {
-    color: #a87bff;
+    color: #6c3bff;
     font-weight: 700;
 }
 
-/* Main container */
+/* Main */
 .main-container {
     max-width: 1200px;
     margin: auto;
     padding: 2rem;
 }
 
-/* Form Section */
+/* Cards */
 .form-section {
     display: flex;
     flex-wrap: wrap;
@@ -50,24 +47,23 @@ body {
 }
 
 .card {
-    background: #24242b;
-    border: 1px solid rgba(153, 94, 255, 0.3);
-    border-radius: 18px;
-    padding: 2rem;
+    background: #ffffff;
     width: 360px;
-    box-shadow: 0 0 25px rgba(111, 67, 255, 0.15);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid #ded9ff;
+    box-shadow: 0 8px 20px rgba(140, 100, 240, 0.15);
+    transition: 0.2s;
 }
 
 .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 0 35px rgba(154, 91, 255, 0.30);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 26px rgba(125, 85, 220, 0.25);
 }
 
 .card h2 {
-    color: #b89aff;
-    margin-bottom: 1.5rem;
-    font-size: 1.6rem;
+    color: #6c3bff;
+    margin-bottom: 1.2rem;
 }
 
 /* Inputs */
@@ -76,66 +72,62 @@ body {
     padding: 12px;
     margin-bottom: 12px;
     border-radius: 10px;
-    border: 1px solid #6f43ff;
-    background: #1f1f25;
-    color: #eae6ff;
-    font-size: 1rem;
+    border: 1px solid #c9baff;
+    background: #faf8ff;
     transition: 0.3s;
 }
 
 .card input:focus {
-    border-color: #b37aff;
-    box-shadow: 0 0 10px rgba(179, 122, 255, 0.6);
+    border-color: #6c3bff;
+    box-shadow: 0 0 8px rgba(108, 59, 255, 0.4);
     outline: none;
 }
 
 /* Buttons */
 .btn {
+    width: 100%;
     padding: 12px;
-    border: none;
     border-radius: 10px;
     font-weight: 600;
     cursor: pointer;
-    width: 100%;
-    font-size: 1rem;
-    transition: all 0.3s ease;
+    border: none;
+    transition: 0.3s;
 }
 
-/* Button Styles */
+/* Button Colors */
 .btn-primary {
-    background: #6f43ff;
-    color: #fff;
+    background: #6c3bff;
+    color: white;
 }
 .btn-primary:hover {
-    background: #5934cc;
+    background: #562dcc;
 }
 
 .btn-secondary {
-    background: #9a5aff;
-    color: #fff;
+    background: #9a7bff;
+    color: white;
 }
 .btn-secondary:hover {
-    background: #7f45d1;
+    background: #7a60d9;
 }
 
 .btn-danger {
-    background: #ff4da6;
-    color: #fff;
+    background: #ff6b8a;
+    color: white;
     margin-top: 10px;
 }
 .btn-danger:hover {
-    background: #cc0075;
+    background: #e85073;
 }
 
 /* User Info */
 .user-info {
-    margin-top: 1rem;
+    background: #f3ecff;
+    border: 1px solid #d9ceff;
     padding: 15px;
-    border-radius: 15px;
-    background: rgba(140, 92, 255, 0.12);
-    border: 1px solid rgba(140, 92, 255, 0.3);
-    box-shadow: 0 0 10px rgba(140, 92, 255, 0.25);
-    animation: fadeIn 0.5s ease-in-out;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(120, 80, 220, 0.15);
+    margin-top: 1rem;
 }
 
 /* Messages */
@@ -145,94 +137,65 @@ body {
 }
 
 .message {
-    display: inline-block;
     padding: 1rem 2rem;
     border-radius: 12px;
+    display: inline-block;
     font-weight: 500;
-    animation: fadeIn 0.5s;
-    transition: opacity 1s, transform 1s;
     margin-bottom: 1rem;
+    transition: 0.8s;
 }
 
 .message.success {
-    background: #c1ffe0;
-    color: #008f4f;
-    border: 1px solid #00c86b;
+    background: #d7ffe7;
+    color: #1b8c4c;
+    border: 1px solid #2cc56b;
 }
 
 .message.error {
-    background: #ffd6d6;
-    color: #c40039;
-    border: 1px solid #ff3e6c;
+    background: #ffe3e3;
+    color: #c93434;
+    border: 1px solid #ff6b6b;
 }
 
 .message.fade-out {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-15px);
 }
 
 /* Table */
-.table-section {
-    margin-top: 2rem;
-    text-align: center;
-}
-
-.table-container {
-    overflow-x: auto;
+.table-section h2 {
+    color: #3b2e63;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    border-radius: 15px;
+    border-radius: 14px;
     overflow: hidden;
+    margin-top: 1rem;
 }
 
 table th {
-    background: #6f43ff;
-    color: #fff;
+    background: #6c3bff;
+    color: white;
     padding: 12px;
 }
 
 table td {
     padding: 12px;
-    border-bottom: 1px solid #3b3b44;
+    border-bottom: 1px solid #e5dfff;
 }
 
 table tr:hover {
-    background: rgba(155, 104, 255, 0.08);
+    background: #f1ecff;
 }
 
 /* Footer */
 .footer {
-    background: #18181d;
-    color: #a89fe0;
-    padding: 1.5rem 2rem;
+    background: #e8e0ff;
+    padding: 1.5rem;
     text-align: center;
     margin-top: 3rem;
-    font-size: 0.95rem;
-    border-top: 1px solid rgba(153, 94, 255, 0.4);
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Responsive */
-@media (max-width: 1024px) {
-    .form-section {
-        flex-direction: column;
-        align-items: center;
-    }
-    .card {
-        width: 90%;
-    }
+    color: #4b3b87;
+    border-top: 1px solid #cfc2ff;
 }
