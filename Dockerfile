@@ -1,18 +1,17 @@
-# Use OpenJDK 17 as base image
+# Dockerfile
 FROM eclipse-temurin:17-jdk-alpine
 
-# Set working directory
 WORKDIR /app
 
-# Copy jar and wait-for-it script
+# Copy wait-for-it script to wait for Redis
+COPY wait-for-it.sh /app/wait-for-it.sh
+RUN chmod +x /app/wait-for-it.sh
+
+# Copy Spring Boot jar
 COPY target/springboot-redis-demo-1.0.0.jar app.jar
-COPY wait-for-it.sh wait-for-it.sh
 
-# Make wait-for-it executable
-RUN chmod +x wait-for-it.sh
-
-# Expose application port
+# Expose the app port
 EXPOSE 8084
 
-# Start app only after Redis is ready
-ENTRYPOINT ["./wait-for-it.sh", "redis:6379", "--", "java", "-jar", "app.jar"]
+# Wait for Redis before starting the app
+ENTRYPOINT ["/app/wait-for-it.sh", "redis:6379", "--", "java", "-jar", "app.jar"]
