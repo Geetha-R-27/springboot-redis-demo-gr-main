@@ -5,7 +5,7 @@ FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
 
 # Copy Maven build files
-COPY target/springboot-redis-demo.jar app.jar
+COPY target/springboot-redis-demo-1.0.0.jar app.jar
 
 # Expose port 8084
 EXPOSE 8084
